@@ -16,6 +16,12 @@ class BaseModel():
         """Initializing the class with the following 
         public attributes"""
 
-        id = str(uuid4())
-        created_at = datetime.now()
-        updated_at = datetime.now()
+        self.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+
+    def __str__(self):
+        """Class method that prints the class name and id
+        to a dictionary
+        Ex: [<class name>] (<self.id>) <self.__dict__>"""
+        return (f"{[self.__class__.__name__]} ({self.id}) {self.__dict__}")
