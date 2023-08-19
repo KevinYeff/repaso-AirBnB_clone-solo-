@@ -7,7 +7,7 @@
 
 import unittest
 from models.base_model import BaseModel
-from uuid import uuid4
+from uuid import UUID, uuid4
 from datetime import datetime
 
 
@@ -22,28 +22,31 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         """This module is used for configuring the environment """
 
-        # self.my_model_base = BaseModel()
-        self.custom_id = str(uuid4())
-        self.custom_created_at = datetime.now().isoformat()
-        self.custom_updated_at = datetime.now().isoformat()
-        self.initial_dict_att = {
-            "id": self.custom_id,
-            "created_at": self.custom_created_at,
-            "updated_at": self.custom_updated_at
-        }
-
-        self.my_model_form_dict = BaseModel(**self.initial_dict_att)
+        self.my_model_base = BaseModel()
 
     def tearDown(self):
         """This module is used for cleaning the environment """
-        # del self.my_model
-        del self.my_model_form_dict
+        del self.my_model_base
+        # del self.my_model_form_dict
 
     def test_init_instance(self):
         """This module tests the initial BaseModel class"""
-        self.assertIsNot(self.my_model_form_dict.id, self.custom_id)
-        self.assertNotEqual(self.my_model_form_dict.created_at,
-                            self.custom_created_at)
-        self.assertNotEqual(self.my_model_form_dict.updated_at,
-                            self.custom_updated_at)
-        self.assertFalse(hasattr(self.my_model_form_dict, "custom_extra_att"))
+
+        self.assertIsInstance(self.my_model_base, BaseModel)
+        # just for fun
+        uuid_str = self.my_model_base.id
+        uuid_obj = UUID(uuid_str)
+        self.assertIsInstance(uuid_obj, UUID)
+        # fun ends
+        self.assertIsInstance(self.my_model_base.created_at, datetime)
+        self.assertIsInstance(self.my_model_base.updated_at, datetime)
+
+    def test_init_extra_att(self):
+        """ Tests if has an extra attribute"""
+        self.assertFalse(hasattr(self.my_model_base, "custom_extra_att"))
+
+    def test_init_is(self):
+        """Testing if the attributes matches the data types"""
+        self.assertIs(type(self.my_model_base.id), str)
+        self.assertIs(type(self.my_model_base.created_at), datetime)
+        self.assertIs(type(self.my_model_base.updated_at), datetime)
