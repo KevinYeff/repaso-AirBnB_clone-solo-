@@ -50,3 +50,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertIs(type(self.my_model_base.id), str)
         self.assertIs(type(self.my_model_base.created_at), datetime)
         self.assertIs(type(self.my_model_base.updated_at), datetime)
+
+    def test_init_equal(self):
+        """Testing if the initial attributes are equal or not when a new
+        obj is created or updated"""
+
+        initial_id = self.my_model_base.id
+        initial_created_at = self.my_model_base.created_at
+        initial_updated_at = self.my_model_base.updated_at
+        self.my_model_base.save()
+
+        self.assertEqual(self.my_model_base.id, initial_id)
+        self.assertEqual(self.my_model_base.created_at, initial_created_at)
+        self.assertEqual(self.my_model_base.updated_at, initial_updated_at)
