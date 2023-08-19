@@ -63,3 +63,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.my_model_base.id, initial_id)
         self.assertEqual(self.my_model_base.created_at, initial_created_at)
         self.assertEqual(self.my_model_base.updated_at, initial_updated_at)
+
+    def test_str_method(self):
+        """Testing the __str__ method from BaseModel"""
+        initial_string = self.my_model_base.__str__()
+        self.assertIsNotNone(initial_string)
+        self.assertIs(type(initial_string), str)
+        self.assertTrue(type(initial_string), str)
+        att_to_check = ["id", "created_at",
+                        "updated_at", "[BaseModel]"]
+        for att in att_to_check:
+            self.assertIn(att, att_to_check)
