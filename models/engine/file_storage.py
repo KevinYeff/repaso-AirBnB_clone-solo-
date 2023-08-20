@@ -10,3 +10,9 @@ class FileStorage():
     # Private class attributes
     __file_path = "file.json"
     __objects = {}
+
+    # Private instance methods
+
+    def all(self):
+        """Returns the dictionary __objects"""
+        return (self.__objects)
