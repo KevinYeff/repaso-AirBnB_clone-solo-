@@ -12,13 +12,21 @@ class BaseModel():
     attributes/methods for other classes"""
     # Public instance attributes
 
-    def __init__(self, id="", created_at=None, updated_at=None):
-        """Initializing the class with the following 
-        public attributes"""
+    def __init__(self, *args, **kwargs):
+        """Initializing the instances from dict or creating a BaseModel
+        class from dict, otherwise use the default public instance attributes"""
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    setattr(self, key, datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif key != "__class__":
+                    setattr(self, key, value)
+        else:
 
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Class method that prints the class name and id
