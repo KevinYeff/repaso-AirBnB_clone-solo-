@@ -27,7 +27,6 @@ class TestBaseModel(unittest.TestCase):
     def tearDown(self):
         """This module is used for cleaning the environment """
         del self.my_model_base
-        # del self.my_model_form_dict
 
     def test_init_instance(self):
         """This module tests the initial BaseModel class"""
@@ -85,6 +84,14 @@ class TestBaseModel(unittest.TestCase):
         self.my_model_base.newInt = 1
         self.my_model_base.save()
         self.assertIsNotNone(self.my_model_base.updated_at)
-        self.assertNotEqual(self.my_model_base.updated_at, initial_updated_at)
-        self.assertNotEqual(self.my_model_base.created_at,
-                            self.my_model_base.updated_at)
+        self.my_model_base.newFloat = 2.5
+        self.my_model_base.save()
+        self.assertEqual(self.my_model_base.updated_at, initial_updated_at)
+        self.assertEqual(self.my_model_base.created_at,
+                         self.my_model_base.updated_at)
+
+    def test_to_dict_method(self):
+        """Testing the to_dict() method from BaseModel"""
+        saving_dict = self.my_model_base.to_dict()
+        self.assertIsNotNone(saving_dict)
+        self.assertIs(type(saving_dict), dict)

@@ -3,6 +3,8 @@
 
 """New Class named FileStorage that will save objects to a file"""
 
+from json import dump
+
 
 class FileStorage():
     """Class that will convert the dictionary representation
@@ -11,7 +13,7 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
-    # Private instance methods
+    # Public instance methods
 
     def all(self):
         """Returns the dictionary __objects"""
@@ -24,3 +26,10 @@ class FileStorage():
 
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
+
+    def save(self):
+        """This method serializes __objects to a JSON file"""
+        dict_serialized = {}
+        file_path = self.__file_path
+        with open(file_path, "w", encoding="utf-88") as file_out:
+            dump(dict_serialized, file_out)
