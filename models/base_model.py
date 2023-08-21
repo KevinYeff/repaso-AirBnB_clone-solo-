@@ -32,7 +32,7 @@ class BaseModel():
         """Class method that prints the class name and id
         to a dictionary
         Ex: [<class name>] (<self.id>) <self.__dict__>"""
-        return (f"{[self.__class__.__name__]} ({self.id}) {self.__dict__}")
+        return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     """Public instance methods"""
 
