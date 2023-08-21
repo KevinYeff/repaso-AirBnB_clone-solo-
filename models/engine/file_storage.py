@@ -31,5 +31,7 @@ class FileStorage():
         """This method serializes __objects to a JSON file"""
         dict_serialized = {}
         file_path = self.__file_path
-        with open(file_path, "w", encoding="utf-88") as file_out:
-            dump(dict_serialized, file_out)
+        for key, value in self.__objects.items():
+            dict_serialized[key] = value.to_dict()
+        with open(file_path, "w", encoding="utf-8") as file_out:
+            dump(dict_serialized, file_out, indent=2, sort_keys=True)
