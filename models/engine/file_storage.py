@@ -3,9 +3,9 @@
 
 """New Class named FileStorage that will save objects to a file"""
 
-from json import dump
-
-
+from json import dump, load
+import os
+import models
 class FileStorage():
     """Class that will convert the dictionary representation
     to a JSON string"""
@@ -35,3 +35,19 @@ class FileStorage():
             dict_serialized[key] = value.to_dict()
         with open(file_path, "w", encoding="utf-8") as file_out:
             dump(dict_serialized, file_out, indent=2, sort_keys=True)
+
+    def reload(self):
+        """This method will deserialize the JSON file to the __objects dict 
+        only if the file __file_path exists, otherwise do mothing"""
+        
+        file_path = self.__file_path
+        
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as file_out:
+                self.__objects = load(file_out)
+                for key, value in self.__objects.items():
+                    cls_name = value["__class__"]
+                    check_cls = models.classes[cls_name]
+                    simple_instance = check_cls(**value)
+                    self.__objects[key] = simple_instance
+                
