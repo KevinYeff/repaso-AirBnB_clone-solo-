@@ -5,7 +5,7 @@
 import cmd
 import models
 from models.base_model import BaseModel
-from models import storage
+from models import storage, classes
 
 
 class HBNBCommand(cmd.Cmd):
@@ -81,6 +81,22 @@ class HBNBCommand(cmd.Cmd):
                 instances = storage.all()
                 del instances[classAndId]
                 storage.save()
+
+    def do_all(self, arg):
+        """this method prints all string representation of all
+        instances based or no in the class name
+        EX: all BaseModel or all"""
+        instances = storage.all()
+        if not arg:
+            for values in instances.values():
+                print([str(values)])
+        elif arg in classes:
+            for values in instances.values():
+                if isinstance(values, BaseModel)\
+                        and values.__class__ == classes[arg]:
+                    print([str(values)])
+        else:
+            print("** class doesn't exist **")
 
 
 if __name__ == '__main__':
