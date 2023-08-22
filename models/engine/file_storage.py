@@ -6,6 +6,8 @@
 from json import dump, load
 import os
 import models
+
+
 class FileStorage():
     """Class that will convert the dictionary representation
     to a JSON string"""
@@ -38,10 +40,10 @@ class FileStorage():
 
     def reload(self):
         """This method will deserialize the JSON file to the __objects dict 
-        only if the file __file_path exists, otherwise do mothing"""
-        
+        only if the file __file_path exists, otherwise do nothing"""
+
         file_path = self.__file_path
-        
+
         if os.path.exists(file_path):
             with open(file_path, "r", encoding="utf-8") as file_out:
                 self.__objects = load(file_out)
@@ -50,4 +52,3 @@ class FileStorage():
                     check_cls = models.classes[cls_name]
                     simple_instance = check_cls(**value)
                     self.__objects[key] = simple_instance
-                
