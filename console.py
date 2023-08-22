@@ -62,6 +62,26 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_destroy(self, arg):
+        """Deletes an instance based on the class name
+        and id and save the change in to the JSON file
+        EX: destroy BaseModel 121212"""
+        parameters = arg.split()
+        if not arg:
+            print("** class name missing **")
+        elif parameters[0] not in models.classes:
+            print("** class doesn't exist **")
+        elif len(parameters) == 1:
+            print("** instance id missing **")
+        else:
+            classAndId = f"{parameters[0]}.{parameters[1]}"
+            if classAndId not in storage.all():
+                print("** no instance found **")
+            else:
+                instances = storage.all()
+                del instances[classAndId]
+                storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
