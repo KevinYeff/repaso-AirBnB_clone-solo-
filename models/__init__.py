@@ -5,13 +5,15 @@ from .user import User
 from .state import State
 from .city import City
 from .amenity import Amenity
+from .place import Place
 
 classes = {
     "BaseModel": BaseModel,
     "User": User,
     "State": State,
     "City": City,
-    "Amenity": Amenity
+    "Amenity": Amenity,
+    "Place": Place
 }
 
 storage = FileStorage()
