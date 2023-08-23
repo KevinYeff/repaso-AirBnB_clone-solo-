@@ -5,7 +5,7 @@
 import cmd
 import models
 from models.base_model import BaseModel
-from models import storage, classes
+from models import classes, storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -34,13 +34,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it in to the 
         JSON file and also prints the id of the instance"""
-        # parameters = arg.split()
+        parameters = arg.split()
         if not arg:
             print("** class name missing **")
-        elif arg not in models.classes:
+        elif parameters[0] not in classes:
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
+            new_instance = classes[parameters[0]]()
             new_instance.save()
             print(new_instance.id)
 
@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
         parameters = arg.split()
         if not arg:
             print("** class name is missing **")
-        elif parameters[0] not in models.classes:
+        elif parameters[0] not in classes:
             print("** class doesn't exists **")
         elif len(parameters) == 1:
             print("** instance id missing **")
@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
         parameters = arg.split()
         if not arg:
             print("** class name missing **")
-        elif parameters[0] not in models.classes:
+        elif parameters[0] not in classes:
             print("** class doesn't exist **")
         elif len(parameters) == 1:
             print("** instance id missing **")
