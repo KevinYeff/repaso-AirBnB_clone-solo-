@@ -6,6 +6,7 @@ from .state import State
 from .city import City
 from .amenity import Amenity
 from .place import Place
+from .review import Review
 
 classes = {
     "BaseModel": BaseModel,
@@ -13,7 +14,8 @@ classes = {
     "State": State,
     "City": City,
     "Amenity": Amenity,
-    "Place": Place
+    "Place": Place,
+    "Review": Review
 }
 
 storage = FileStorage()
