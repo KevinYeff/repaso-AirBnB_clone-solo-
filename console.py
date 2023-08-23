@@ -98,6 +98,36 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_update(self, arg):
+        """This method updates an instance based on the class name and
+        id by adding or updating a attribute 
+        EX:update BaseModel 121212 email <"aibnb@mail.com"> """
+        parameters = arg.split()
+
+        if not arg:
+            print("** class name missing **")
+
+        elif parameters[0] not in classes:
+            print("** class doesn't exist **")
+
+        elif len(parameters) == 1:
+            print("** instance id missing **")
+
+        elif len(parameters) == 2:
+            clsAndId = f"{parameters[0]}.{parameters[1]}"
+            if clsAndId not in storage.all():
+                print("** no instance found **")
+            else:
+                print("** attribute name missing **")
+        elif len(parameters) == 3:
+            print("** value missing **")
+        else:
+            instances = storage.all()
+            clsAndId = f"{parameters[0]}.{parameters[1]}"
+            instance = instances[clsAndId]
+            setattr(instance, parameters[2], parameters[3])
+            instance.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
