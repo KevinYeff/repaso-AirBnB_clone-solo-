@@ -9,13 +9,17 @@ import models
 
 
 class BaseModel():
-    """This class will define all the common
-    attributes/methods for other classes"""
+    """
+    This class will define all the common
+    attributes/methods for other classes
+    """
     # Public instance attributes
 
     def __init__(self, *args, **kwargs):
-        """Initializing the instances from dict or creating a BaseModel
-        class from dict, otherwise use the default public instance attributes"""
+        """
+        Initializing the instances from dict or creating a BaseModel
+        class from dict, otherwise use the default public instance attributes
+        """
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -31,24 +35,32 @@ class BaseModel():
             models.storage.new(self)
 
     def __str__(self):
-        """Class method that prints the class name and id
+        """
+        Class method that prints the class name and id
         to a dictionary
-        Ex: [<class name>] (<self.id>) <self.__dict__>"""
+        Ex: [<class name>] (<self.id>) <self.__dict__>
+        """
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     """Public instance methods"""
 
     def save(self):
-        """Public instance method that updates the public instance attribute
-        updated_at with the current datetime"""
+        """
+        Public instance method that updates the public instance attribute
+        updated_at with the current datetime
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """Returns a dictionary containing all key values 
-        of __dict__ of the instance"""
-        instance_dict = self.__dict__.copy()
-        instance_dict["__class__"] = self.__class__.__name__
-        instance_dict["created_at"] = self.updated_at.isoformat()
-        instance_dict["updated_at"] = self.updated_at.isoformat()
-        return (instance_dict)
+        """
+        Returns a dictionary containing all key values
+        of the instance
+        """
+        instance_dict = {
+            key: value.isoformat() if key in ("created_at", "updated_at")
+            else value
+            for key, value in self.__dict__.items()
+        }
+        instance_dict.update({"__class__": self.__class__.__name__})
+        return instance_dict
