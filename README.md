@@ -55,4 +55,4 @@ style BaseModel stroke:#000,stroke-width:6px
 
 <<Abstract>> BaseModel
  ```
-> **_NOTE:_** As you can see in the class diagram the following public attributes "created_at" & "updated_at" are datetime objects (internally), we need to take care of this objects when printing the instance format, so inside the method  to_dict() we to implement the logic to target those objects and convert those to strings.
+> **_NOTE:_** As you can see in the class diagram the following public attributes "created_at" & "updated_at" are datetime objects (internally), we need to take care of this objects when printing the instance format, so inside the method  to_dict() we need to implement the logic to target those objects and convert those to strings.
