@@ -33,15 +33,17 @@ class FileStorage():
 
     def save(self):
         """This method serializes __objects to a JSON file"""
-        dict_serialized = {}
+        dict_serialized = {
+            key: value.to_dict()
+            for key, value in self.__objects.items()
+        }
         file_path = self.__file_path
-        for key, value in self.__objects.items():
-            dict_serialized[key] = value.to_dict()
+
         with open(file_path, "w", encoding="utf-8") as file_out:
             dump(dict_serialized, file_out, indent=2, sort_keys=True)
 
     def reload(self):
-        """This method will deserialize the JSON file to the __objects dict 
+        """This method will deserialize the JSON file to the __objects dict
         only if the file __file_path exists, otherwise do nothing"""
 
         file_path = self.__file_path
