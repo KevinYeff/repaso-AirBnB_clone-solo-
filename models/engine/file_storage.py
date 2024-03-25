@@ -22,10 +22,12 @@ class FileStorage():
         return (self.__objects)
 
     def new(self, obj):
-        """This method will set in __objects dict the 
+        """This method will set in __objects dict the
         object class name and id EX: <obj class name>.id
         we will take the example as a key format"""
 
+        # Extracts obj class name and obj id
+        # This extraction will be the key for the object
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
