@@ -21,12 +21,14 @@ class BaseModel():
         class from dict, otherwise use the default public instance attributes
         """
         if kwargs:
-            for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(
-                        value, "%Y-%m-%dT%H:%M:%S.%f"))
-                elif key != "__class__":
-                    setattr(self, key, value)
+            kwargs.pop("__class__", None)
+            self.__dict__.update(kwargs)
+            self.__dict__.update({
+                key: datetime.strptime(self.__dict__[key],
+                                       "%Y-%m-%dT%H:%M:%S.%f")
+                for key in self.__dict__ if key in ["created_at",
+                                                    "updated_at"]
+            })
         else:
 
             self.id = str(uuid4())
