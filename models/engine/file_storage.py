@@ -51,8 +51,8 @@ class FileStorage():
         if os.path.exists(file_path):
             with open(file_path, "r", encoding="utf-8") as file_out:
                 self.__objects = load(file_out)
-                for key, value in self.__objects.items():
-                    cls_name = value["__class__"]
-                    check_cls = models.classes[cls_name]
-                    simple_instance = check_cls(**value)
-                    self.__objects[key] = simple_instance
+                dict_deserialized = {
+                    key: models.classes[value.get("__class__")](**value)
+                    for key, value in self.__objects.items()
+                }
+                self.__objects.update(dict_deserialized)
