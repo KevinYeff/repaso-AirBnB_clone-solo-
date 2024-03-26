@@ -38,7 +38,7 @@ Output:
 style BaseModel stroke:#000,stroke-width:6px
 
 
-%%{
+  %%{
   init: {
     'theme': 'base',
     'themeVariables': {
@@ -79,4 +79,37 @@ my_new_model = BaseModel(**my_model_json)
 certainly this diccionary is an input, it has it's own key, values,
 we can either choose treat the kwargs or directly update the instance dictionary
 
-> **_NOTE:_** Remember the previous note ("created_at and updated_at"), the logic to manage kwargs needs to be according to the rules implemented inside the instance; inside  the instance we work usisng datetime objects, so we need to convert those kwrags attributes that requieres this logic.<br>Also remember that the kwargs will have it's own types according to the to_dict() method 
+> **_NOTE:_** Remember the previous note ("created_at and updated_at"), the logic to manage kwargs needs to be according to the rules implemented inside the instance; inside  the instance we work usisng datetime objects, so we need to convert those kwrags attributes that requieres this logic.<br>Also remember that the kwargs will have it's own types according to the to_dict() method
+
+## Creating an instance from BaseModel()
+```py
+from models.base_model import BaseModel
+
+my_model = BaseModel()
+```
+```mermaid
+sequenceDiagram
+    participant Variable
+    participant BaseModel
+    Variable->>BaseModel: my_model = BaseModel()
+    activate BaseModel
+    BaseModel-->>Variable: Instances obj
+    deactivate BaseModel
+
+
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#005eff',
+      'primaryTextColor': '#7f7679',
+      'primaryBorderColor': '#ffea55',
+      'lineColor': '',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff',
+      'fontFamily': ''
+    }
+  }
+}%%
+```
+> **_NOTE:_** The diagram shows the creating process of an instance from the `BaseModel` class.<br> 1. The user defines a variable named `my_model`<br>2. A new instance of the `BaseModel` class is assigned to the variable `my_model`<br>3. Instance is created<br>4. Returns an instance with attributes to the `my_model` variable
