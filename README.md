@@ -133,7 +133,7 @@ flowchart TD;
   Condition2-->Action2[/Convert string values to datetime objs/]
   Condition--false-->Else[/Set instance attributes to new obj/]
   Condition2--false-->Loop
-  Loop--false-->End(End)
+  Loop--false--->End(End)
 
 style Start fill:crimson,stroke:blue,stroke-width:2px
 %%style Declare stroke:blue,stroke-width:2px
@@ -154,3 +154,38 @@ style Action2 fill:#00ff00,stroke:blue,stroke-width:2px
 }}%%
 ```
 > **_NOTE:_** The flowchart represents the instance when it is created from a dictionary, json representation, and manages the logic to convert some values to it's roots(former instance attributes).
+
+## Serialization and Deserialization
+
+In this part of the project we are going to start writing a new class named `FileStorage` this class will do the job.
+As we can see, everytime the test case ends, the objects dissapear, that is something that we don't want, so this class will help us to save and track every object that is instanced.
+**Well lets define  `FileStorage` class**
+
+```mermaid
+ classDiagram
+  class FileStorage{
+    -PrivAtt __file_path : p_file
+    -PrivAtt __objects : dict
+    +method all() dict
+    +method new() sets key
+    +method save() serializes
+    +method reload() deserializes
+  }
+style BaseModel stroke:#000,stroke-width:6px
+
+
+  %%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#005eff',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#000',
+      'lineColor': '#000000',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff',
+      'fontFamily': ''
+    }
+  }
+}%%
+```
