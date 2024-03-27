@@ -239,4 +239,4 @@ sequenceDiagram
   }
 }%%
 ```
-> **_NOTE:_** This sequence diagram represents how a link is established between `BaseModel` and `FileStorage` and how this object is saved when creating a new instance or instnace reloaded from kwargs
+> **_NOTE:_** This sequence diagram represents how a link is established between `BaseModel` and `FileStorage` and how this object is saved when creating a new instance or reloaded from kwargs
