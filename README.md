@@ -189,3 +189,54 @@ style BaseModel stroke:#000,stroke-width:6px
   }
 }%%
 ```
+## Linking BaseModel to FileStorage
+
+Now that we define the FileStorage() class we need to link it to the BaseModel() class to really save objects in a file, this file  will
+containg json representation of the objects and will work as a storage for every object that is intanced.
+
+** Well Let's define the link between those classes**
+
+```mermaid
+sequenceDiagram
+    box Lightblue Linking BaseModel with FileStorage
+    participant BaseModel
+    participant storage
+    end
+    participant fileJson
+
+    Note over storage: models.__init__<br>storage = FileStorage()<br>storage.reload()
+    BaseModel->>storage: __init__(*args, **kwargs)<br>new or realoaded instance object
+
+    storage-->>BaseModel: None
+
+    critical The link is established here
+
+    BaseModel->>+storage: creates obj<br>storage.new(obj)
+
+    storage-->>-BaseModel: None
+
+    BaseModel->>+storage: storage.save()
+    end
+    storage->>-fileJson: Serializes to json
+
+    activate storage
+    storage-->>-fileJson: reload()
+    activate fileJson
+    fileJson-->>storage: Reload objects
+
+    %%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#005eff',
+      'primaryTextColor': 'black',
+      'primaryBorderColor': '#000',
+      'lineColor': '#000000',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff',
+      'fontFamily': ''
+    }
+  }
+}%%
+```
+> **_NOTE:_** This sequence diagram represents how a link is established between `BaseModel` and `FileStorage` and how this object is saved when creating a new instance or instnace reloaded from kwargs
