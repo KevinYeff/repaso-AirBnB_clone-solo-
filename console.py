@@ -86,14 +86,17 @@ class HBNBCommand(cmd.Cmd):
         instances based or no in the class name
         EX: all BaseModel or all"""
         instances = storage.all()
+        all_dict = []
         if not arg:
             for values in instances.values():
-                print([str(values)])
+                all_dict.append(str(values))
+            print(all_dict)
         elif arg in classes:
             for values in instances.values():
                 if isinstance(values, BaseModel)\
                         and values.__class__ == classes[arg]:
-                    print([str(values)])
+                    all_dict.append(str(values))
+            print(all_dict)
         else:
             print("** class doesn't exist **")
 
