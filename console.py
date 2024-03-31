@@ -3,7 +3,6 @@
 
 """Program console 0.0.1 that uses the cmd module"""
 import cmd
-import models
 from models.base_model import BaseModel
 from models import classes, storage
 
@@ -23,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_help(self, arg: str):
-        """Method that gives the user a short description of the 
+        """Method that gives the user a short description of the
         commands"""
         return super().do_help(arg)
 
@@ -32,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
     # New commands
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it in to the 
+        """Creates a new instance of BaseModel, saves it in to the
         JSON file and also prints the id of the instance"""
         parameters = arg.split()
         if not arg:
@@ -46,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """This method will print the string representation of an
-        instance based on the class name and id 
+        instance based on the class name and id
         EX: show BaseModel 12121212"""
         parameters = arg.split()
         if not arg:
@@ -100,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """This method updates an instance based on the class name and
-        id by adding or updating a attribute 
+        id by adding or updating a attribute
         EX:update BaseModel 121212 email <"aibnb@mail.com"> """
         parameters = arg.split()
 
