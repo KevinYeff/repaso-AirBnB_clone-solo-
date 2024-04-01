@@ -1,4 +1,5 @@
 # New Repository AirBnB Clone (solo)
+> **_NOTE:_** If you find this repository interesting, please leave a star, it would motivate me for sure :)
 # contributor: Kevin Espinoza Salguedo
 
 ## Creating the first BaseModel Class
@@ -240,3 +241,19 @@ sequenceDiagram
 }%%
 ```
 > **_NOTE:_** This sequence diagram represents how a link is established between `BaseModel` and `FileStorage` and how this object is saved when creating a new instance or reloaded from kwargs
+
+
+# Contact
+
+<p align="center">
+  <img src="https://avatars.githubusercontent.com/u/105649198?v=4" width=135>
+  <br>
+  <a href="https://github.com/KevinYeff"><h>Kevin Espinoza</h></a>
+</p>
+
+<p align="center">
+<a href="https://twitter.com/missingyeff" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="missingyeff" height="30" width="40" /></a>
+<a href="https://www.linkedin.com/in/kevin-espinoza-salguedo-81a0a223b/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://www.linkedin.com/in/kevin-espinoza-salguedo-81a0a223b" height="30" width="40" /></a>
+<a href="https://github.com/KevinYeff" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="https://www.github.com/KevinYeff" height="30" width="40" /></a>
+
+</p>
