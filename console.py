@@ -5,6 +5,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import classes, storage
+from extra_functions.parse_cmdli_arg import int_or_float_or_string
 
 
 class HBNBCommand(cmd.Cmd):
@@ -127,7 +128,8 @@ class HBNBCommand(cmd.Cmd):
             instances = storage.all()
             clsAndId = f"{parameters[0]}.{parameters[1]}"
             instance = instances[clsAndId]
-            setattr(instance, parameters[2], parameters[3])
+            att_to_add = int_or_float_or_string(parameters[3])
+            setattr(instance, parameters[2], att_to_add)
             instance.save()
 
 
