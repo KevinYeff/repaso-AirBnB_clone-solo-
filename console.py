@@ -6,6 +6,8 @@ import cmd
 from models.base_model import BaseModel
 from models import classes, storage
 from extra_functions.parse_cmdli_arg import int_or_float_or_string
+from extra_functions.pre_cmdli import pre_cmd
+
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,6 +15,14 @@ class HBNBCommand(cmd.Cmd):
     """Class that will be the entry point of the command interpreter"""
 
     prompt = "(hbnb) "
+
+    def precmd(self, arg):
+        if arg:
+            new_arg = pre_cmd(arg)
+        if new_arg is None:
+            return arg
+        else:
+            return new_arg
 
     def do_quit(self, arg):
         """Method that exits the program"""
