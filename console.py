@@ -142,6 +142,24 @@ class HBNBCommand(cmd.Cmd):
             setattr(instance, parameters[2], att_to_add)
             instance.save()
 
+    def do_count(self, arg):
+        """
+        Counts the number of instances of a class based on class name
+        """
+        parameters = arg.split()
+        ins_counter = 0
+
+        if len(parameters) < 1:
+            print("** class name missing **")
+            return
+
+        cls = f"{parameters[0]}"
+        instances = storage.all()
+        for value in instances.values():
+            if isinstance(value, classes[cls]):
+                ins_counter += 1
+        print(ins_counter)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
