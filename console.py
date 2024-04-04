@@ -11,6 +11,7 @@ from models.base_model import BaseModel
 from extra_functions.pre_cmdli import pre_cmd
 from extra_functions.parse_cmdli_arg import int_or_float_or_string
 
+
 class HBNBCommand(cmd.Cmd):
 
     """Class that will be the entry point of the command interpreter"""
@@ -18,6 +19,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def precmd(self, arg):
+        """Method that parses args from cmdli"""
         if arg:
             new_arg = pre_cmd(arg)
         if new_arg is None:
