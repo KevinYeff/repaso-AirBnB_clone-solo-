@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # Contributor: Kevin Yeff Espinoza Salguedo
-from .exract_id import id_parser
+from .extract_id import id_parser
 """Function to parse a cmdli command ver 0.0.2"""
 
 
