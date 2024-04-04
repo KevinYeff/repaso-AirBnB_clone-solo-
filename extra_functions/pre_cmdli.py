@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 # Contributor: Kevin Yeff Espinoza Salguedo
-
-"""Function to parse a cmdli command ver 0.0.1"""
+from .exract_id import id_parser
+"""Function to parse a cmdli command ver 0.0.2"""
 
 
 def pre_cmd(arg):
     """
-    Function to parse a cmdli command ver 0.0.1
+    Function to parse a cmdli command ver 0.0.2
     :param arg: cmdli arguments
     :return: parsed args with the correct command
     :inital example input: BaseModel.all()
@@ -22,7 +22,14 @@ def pre_cmd(arg):
         command = parameters[0]
         # format the correct command
         format = f"{command} {cls}"
-        # return the command formatted
-        return format
+        # if there are more chars that just ")"
+        if len(parameters[1]) > 1 and parameters[1][0] != ")":
+            # extract the id for the class
+            id_for_cls = id_parser(parameters[1])
+            # return <cmd> <cls> <id>
+            return f"{format} {id_for_cls}"
+        else:
+            # return the (previous) command formatted
+            return format
     else:
         return None
