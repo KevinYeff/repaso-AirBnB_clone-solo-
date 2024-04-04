@@ -7,7 +7,7 @@ from models.base_model import BaseModel
 from models import classes, storage
 from extra_functions.parse_cmdli_arg import int_or_float_or_string
 from extra_functions.pre_cmdli import pre_cmd
-
+import os
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,6 +23,10 @@ class HBNBCommand(cmd.Cmd):
             return arg
         else:
             return new_arg
+
+    def do_clear(self, arg):
+        """Clears the screen"""
+        os.system('clear')
 
     def do_quit(self, arg):
         """Method that exits the program"""
