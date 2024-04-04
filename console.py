@@ -2,13 +2,14 @@
 # Contributor: Kevin Yeff Espinoza Salguedo
 
 """Program console 0.0.1 that uses the cmd module"""
-import cmd
-from models.base_model import BaseModel
-from models import classes, storage
-from extra_functions.parse_cmdli_arg import int_or_float_or_string
-from extra_functions.pre_cmdli import pre_cmd
 import os
+import cmd
 
+from models import classes, storage
+
+from models.base_model import BaseModel
+from extra_functions.pre_cmdli import pre_cmd
+from extra_functions.parse_cmdli_arg import int_or_float_or_string
 
 class HBNBCommand(cmd.Cmd):
 
