@@ -1,0 +1,7 @@
+# Ignore Emacs temporary files
+*~
+.#*
+#*#
+#
+# Ignore venv directory
+venv/
